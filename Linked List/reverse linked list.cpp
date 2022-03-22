@@ -1,79 +1,67 @@
-// Iterative C++ program to reverse
-// a linked list
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-/* Link list node */
-struct Node {
-	int data;
-	struct Node* next;
-	Node(int data)
-	{
-		this->data = data;
-		next = NULL;
-	}
-};
+ class Node{
+   public:
+      int data;
+      Node* next;
+ };
+ 
+ void printList(Node* n){
+   while(n!=NULL){
+     cout<<n->data<<" ";
+     n=n->next;
+   }
+   cout<<endl;
+ }
+ 
 
-struct LinkedList {
-	Node* head;
-	LinkedList() { head = NULL; }
 
-	/* Function to reverse the linked list */
-	void reverse()
-	{
-		// Initialize current, previous and
-		// next pointers
-		Node* current = head;
-		Node *prev = NULL, *next = NULL;
+void end(Node* &head,int val){      //inserting at end
+   Node* new_list= new Node();       //inserting at end
+    new_list->data=val;              //inserting at end
+   if(head==NULL){                     //inserting at end
+     head=new_list;                      //inserting at end
+     return;                             //inserting at end
+   }                                     //inserting at end
+   Node* temp=head;                        //inserting at end
+   while(temp->next!=NULL){                //inserting at end
+     temp=temp->next;                        //inserting at end
+   }                                           //inserting at end
+    temp->next=new_list;                       //inserting at end
+ }
 
-		while (current != NULL) {
-			// Store next
-			next = current->next;
-
-			// Reverse current node's pointer
-			current->next = prev;
-
-			// Move pointers one position ahead.
-			prev = current;
-			current = next;
-		}
-		head = prev;
-	}
-
-	/* Function to print linked list */
-	void print()
-	{
-		struct Node* temp = head;
-		while (temp != NULL) {
-			cout << temp->data << " ";
-			temp = temp->next;
-		}
-	}
-
-	void push(int data)
-	{
-		Node* temp = new Node(data);
-		temp->next = head;
-		head = temp;
-	}
-};
-
-/* Driver code*/
-int main()
-{
-	/* Start with the empty list */
-	LinkedList ll;
-	ll.push(20);
-	ll.push(4);
-	ll.push(15);
-	ll.push(85);
-
-	cout << "Given linked list\n";
-	ll.print();
-
-	ll.reverse();
-
-	cout << "\nReversed Linked list \n";
-	ll.print();
-	return 0;
+Node* reverse(Node* &head){
+  Node* curr=head;
+  Node* prev=NULL;
+  Node* nextp;
+  while(curr!=NULL){
+    nextp=curr->next;
+    curr->next=prev;
+    prev=curr;
+    curr=nextp;
+  }
+  head=prev;
+}
+ 
+int main() 
+{   
+    Node* head=NULL;
+    Node* two=NULL;
+   
+    head=new Node();
+    two=new Node();
+    
+    head->data=1;
+    head->next=two;
+    
+    two->data=2;
+    two->next=NULL;
+    end(head,5);
+    end(head,6);
+  
+    printList(head);
+    reverse(head);
+    printList(head);
+    return 0;
 }
