@@ -7,7 +7,7 @@ using namespace std;
       Node* next;
  };
  
- void printList(Node* n){
+ void printList(Node* n){ //print
    while(n!=NULL){
      cout<<n->data<<" ";
      n=n->next;
@@ -29,5 +29,5 @@ int main()
     two->next=NULL;
     
     printList(head);
-    return 0;
+    return 0; 
 }
